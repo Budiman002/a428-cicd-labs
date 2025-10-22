@@ -22,7 +22,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
-                input message: 'Finished using the website? (Click "Proceed" to continue)'
+                echo 'Application is running. Waiting for 1 minute...'
+		sleep 60
+		echo '1 minute elapsed. Stopping application...'
                 sh './jenkins/scripts/kill.sh'
             }
         }
